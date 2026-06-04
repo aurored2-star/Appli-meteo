@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="ville" placeholder="Entrez une ville..." /><br><br>
+    <button type="button" id="recup">Récupérer le temps</button><br>
+    Température :<span id="temp"></span><br>
+    Humidité :<span id="humidity"></span><br>
+    Vitesse du vent :<span id="wind"></span><br>
+    Nuage :<span id=clouds></span><br>
+    Description :<span id="desc"></span><br>
+    <span><img id="icone"></span>
+
+
+    <script>
+
+        async function getData() {
+            const ville = document.getElementById("ville").value;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=CLE_API_SUPPRIMEE&units=metric&lang=fr`;
+            try {
+                const reponse = await fetch(url);
+                if (!reponse.ok) {
+                    throw new Error(`Statut de réponse : ${reponse.status}`);
+                }
+
+                const resultat = await reponse.json();
+                document.getElementById("temp").innerHTML = resultat.main.temp + " °C";
+                document.getElementById("humidity").innerHTML = resultat.main.humidity;
+                document.getElementById("clouds").innerHTML = resultat.clouds.all;
+                document.getElementById("wind").innerHTML = resultat.wind.speed;
+                document.getElementById("desc").innerHTML = resultat.weather[0].description;
+                document.getElementById("icone").src = "https://openweathermap.org/payload/api/media/file/" + resultat.weather[0].icon + ".png";
+
+            } catch (erreur) {
+                console.error(erreur.message);
+            }
+        }
+
+        document.getElementById("recup").addEventListener("click", function () {
+            getData();
+        });
+
+    </script>
+
+</body>
+
+</html>
