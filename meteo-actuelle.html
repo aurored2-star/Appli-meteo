@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Météo actuelle</title>
 </head>
 
 <body>
@@ -18,11 +18,12 @@
     <span><img id="icone"></span>
 
 
+    <script src="config.js"></script>
     <script>
 
         async function getData() {
             const ville = document.getElementById("ville").value;
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=CLE_API_SUPPRIMEE&units=metric&lang=fr`;
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=${API_KEY}&units=metric&lang=fr`;
             try {
                 const reponse = await fetch(url);
                 if (!reponse.ok) {
