@@ -33,8 +33,8 @@ Le projet contient deux pages :
 1. Créez un compte gratuit sur [openweathermap.org](https://openweathermap.org/api) et récupérez une clé API.
 2. Clonez le dépôt :
    ```bash
-   git clone https://github.com/aurored2-star/meteo-api.git
-   cd meteo-api
+   git clone https://github.com/aurored2-star/Appli-meteo.git
+   cd Appli-meteo
    ```
 3. Copiez `config.example.js` en `config.js` et collez-y votre clé :
    ```js
